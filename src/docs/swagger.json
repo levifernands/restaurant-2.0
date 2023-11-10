@@ -1,0 +1,697 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Analisale Documentation",
+    "description": "This is the documentation for the Web project API (in developmeent)",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:3000/clientes",
+      "description": "Cliente API"
+    },
+    {
+      "url": "https://localhost:3000/pedidos",
+      "description": "Pedido API"
+    },
+    {
+      "url": "https://localhost:3000/items",
+      "description": "Item API"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Cliente",
+      "description": "Everything about client",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Pedido",
+      "description": "Access to  orders",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Item",
+      "description": "Access to items",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "paths": {
+    "/clientes": {
+      "get": {
+        "tags": ["Cliente"],
+        "summary": "Get all clients",
+        "description": "This route will list all clients created",
+        "operationId": "getAllClientes",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Cliente"],
+        "summary": "Add a new cliente",
+        "description": "This route will create a new cliente",
+        "operationId": "createCliente",
+        "requestBody": {
+          "description": "Create a new cliente",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/clientes/{id}": {
+      "get": {
+        "tags": ["Cliente"],
+        "summary": "Find cliente by ID",
+        "description": "Returns a single cliente by its ID",
+        "operationId": "getClienteById",
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "description": "ID of cliente to return",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Cliente not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Cliente"],
+        "summary": "Delete cliente by ID",
+        "description": "This route will delete a cliente by its id",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "description": "User id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID value"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Cliente"],
+        "summary": "Update cliente by ID",
+        "description": "",
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "description": "ID of cliente to update",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteUpdated"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteUpdated"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pedidos": {
+      "get": {
+        "tags": ["Pedido"],
+        "summary": "Get all pedidos",
+        "description": "This route will list all pedidos created",
+        "operationId": "getAllPedidos",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pedido"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pedido not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Pedido"],
+        "summary": "Add a new Pedido",
+        "description": "This route will create a new Pedido",
+        "operationId": "createPedido",
+        "requestBody": {
+          "description": "Create a new product",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pedido"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pedido"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/pedidos/{id}": {
+      "get": {
+        "tags": ["Pedido"],
+        "summary": "Find pedido by ID",
+        "description": "Returns a single pedido by its ID",
+        "operationId": "getPedidoById",
+        "parameters": [
+          {
+            "name": "pedidoId",
+            "in": "path",
+            "description": "ID of pedido to return",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pedido"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pedido not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Pedido"],
+        "summary": "Deletes pedido by ID",
+        "description": "This route will delete a pedido by its id",
+        "operationId": "deletePedido",
+        "parameters": [
+          {
+            "name": "pedidoId",
+            "in": "path",
+            "description": "Pedido id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pedido"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID value"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Pedido"],
+        "summary": "Update pedido by ID",
+        "description": "",
+        "operationId": "updatePedido",
+        "parameters": [
+          {
+            "name": "pedidoId",
+            "in": "path",
+            "description": "ID of pedido to update",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pedido"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pedido"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/items": {
+      "get": {
+        "tags": ["Item"],
+        "summary": "Get all items",
+        "description": "This route will list all items created",
+        "operationId": "getAllItems",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Item not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Item"],
+        "summary": "Add a new Item",
+        "description": "This route will create a new item",
+        "operationId": "createItem",
+        "requestBody": {
+          "description": "Create a new item",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Item"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/items/{id}": {
+      "get": {
+        "tags": ["Item"],
+        "summary": "Find item by ID",
+        "description": "Returns a single item by its ID",
+        "operationId": "getSaleById",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "ID of item to return",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Sale not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Item"],
+        "summary": "Delete item by ID",
+        "description": "This route will delete an item by its id",
+        "operationId": "deleteItem",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "Item id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID value"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Item"],
+        "summary": "Update item by ID",
+        "description": "",
+        "operationId": "updateItem",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "ID of item to update",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Item"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Pedido": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "nome": {
+            "type": "string",
+            "example": "nome padrão do pedido"
+          },
+          "item": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "nome": {
+            "type": "string",
+            "example": "Item 1"
+          },
+          "descricao": {
+            "type": "string",
+            "example": "Descricao do item"
+          },
+          "preco": {
+            "type": "integer",
+            "example": 20
+          }
+        }
+      },
+      "ClienteUpdated": {
+        "required": ["nome", "email", "pedido"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Adryano Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "adryano.doe@example.com"
+          },
+          "password": {
+            "type": "integer",
+            "example": 2
+          }
+        }
+      },
+      "Cliente": {
+        "required": ["nome", "email", "pedido"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Adriano Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "adriano.doe@example.com"
+          },
+          "password": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Cliente": {
+        "description": "Cliente object that needs to be added",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Cliente"
+            }
+          }
+        }
+      },
+      "ClienteArray": {
+        "description": "List of clients",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            }
+          }
+        }
+      },
+      "Product": {
+        "description": "Product object that needs to be added",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Product"
+            }
+          }
+        }
+      },
+      "ProductArray": {
+        "description": "List of products",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Product"
+            }
+          }
+        }
+      },
+      "Item": {
+        "description": "Items object that needs to be added",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Item"
+            }
+          }
+        }
+      },
+      "ItemsArray": {
+        "description": "List of Items",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Item"
+            }
+          }
+        }
+      }
+    }
+  }
+}
