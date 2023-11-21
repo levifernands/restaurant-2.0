@@ -10,10 +10,10 @@ Para contribuir com o projeto, siga os passos abaixo para começar:
 
 1. **Clone o repositório:**
 
-   ```bash
+```bash
    git clone https://github.com/levifernands/restaurant-2.0.git
    cd restaurant-2.0
-    ```
+```
 
 2. **Instale as dependências:**
 
