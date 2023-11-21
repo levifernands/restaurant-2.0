@@ -1,4 +1,4 @@
-const clienteRepository = require("../repository/clienteRepository").default;
+const clienteRepository = require("../repository/clienteRepository");
 const ClienteService = require("../service/clienteService.js");
 const ClienteDTO = require("../dto/clienteDTO");
 
@@ -8,11 +8,14 @@ module.exports = {
       const clienteDTO = new ClienteDTO(
         req.body.nome,
         req.body.email,
-        req.body.pedido
+        req.body.pedidoId
       );
       const cliente = await ClienteService.createCliente(clienteDTO);
       return res.json(cliente);
     } catch (error) {
+      if (error.name === "SequelizeForeignKeyConstraintError") {
+        return res.status(400).json({ error: "Pedido não encontrado." });
+      }
       return res.status(500).json({ error: error.message });
     }
   },
@@ -63,9 +66,13 @@ module.exports = {
       await ClienteService.deleteCliente(clienteId);
       return res.json({ message: "Cliente deletado com sucesso" });
     } catch (error) {
-      return res
-        .status(500)
-        .json({ error: error.message || "Internal Server Error" });
+      console.error(error);
+
+      if (error.message === "Cliente não encontrado.") {
+        res.status(404).json({ error: "Cliente não encontrado." });
+      } else {
+        res.status(500).json({ error: "Falha ao excluir cliente." });
+      }
     }
   },
 };

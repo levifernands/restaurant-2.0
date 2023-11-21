@@ -13,9 +13,24 @@ class PedidoController {
 
   async createPedido(req, res) {
     try {
-      const pedidoDTO = new PedidoDTO(req.body.nome);
+      const pedidoDTO = new PedidoDTO(req.body.items || []);
       const pedido = await PedidoService.createPedido(pedidoDTO);
-      res.status(201).json(pedido);
+      const itensAssociadosIds = req.body.items || [];
+
+      if (itensAssociadosIds.length > 0) {
+        await PedidoItem.bulkCreate(
+          itensAssociadosIds.map((itemId) => ({ pedidoId: pedido.id, itemId })),
+          { ignoreDuplicates: true }
+        );
+      }
+
+      const resposta = {
+        id: pedido.id,
+        createdAt: pedido.createdAt,
+        updatedAt: pedido.updatedAt,
+        itens: itensAssociadosIds,
+      };
+      res.status(201).json(resposta);
     } catch (error) {
       console.error(error);
       res.status(400).json({ error: error.message });

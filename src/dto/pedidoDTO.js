@@ -1,6 +1,6 @@
 class PedidoDTO {
-  constructor(nome) {
-    this.nome = nome;
+  constructor(items) {
+    this.items = items;
   }
 }
 

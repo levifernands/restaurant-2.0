@@ -1,8 +1,8 @@
 class ItemDTO {
-  constructor(nome, email, pedido) {
+  constructor(nome, email, pedidoId) {
     this.nome = nome;
     this.email = email;
-    this.pedido = pedido;
+    this.pedidoId = pedidoId;
   }
 }
 

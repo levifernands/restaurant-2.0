@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/app.js",
-    "dev": "nodemon -x \"npx sequelize db:migrate && node src/app.js\""
+    "dev": "nodemon -x \"npx sequelize db:migrate && node src/app.js\"",
+    "generate-swagger": "node swagger-config.js"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +20,8 @@
     "sequelize": "^6.34.0",
     "sequelize-cli": "^6.6.2",
     "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.23.7"
   }
 }

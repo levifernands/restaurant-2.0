@@ -6,18 +6,24 @@ PedidoItem = require("../models/PedidoItem");
 class PedidoService {
   async createPedido(pedidoDTO) {
     try {
-      /*       const itemIds = pedidoDTO.items; */
-      const { nome } = pedidoDTO;
+      const { items } = pedidoDTO;
+      const novoPedido = await pedidoRepository.create();
 
-      /* // Verificar se todos os itens existem
-      const existingItems = await Item.findAll({ where: { id: itemIds } }); */
-
-      /*   if (existingItems.length !== itemIds.length) {
-        throw new Error("Um ou mais itens não existem");
-      } */
-
-      // Criar o pedido no banco de dados
-      return await pedidoRepository.create(new PedidoDTO(nome));
+      if (items && items.length > 0) {
+        await Promise.all(
+          items.map(async (itemId) => {
+            const item = await Item.findByPk(itemId);
+            if (item) {
+              await PedidoItem.create({
+                pedidoId: novoPedido.id,
+                itemId: itemId,
+                quantidade: 1,
+              });
+            }
+          })
+        );
+      }
+      return novoPedido;
     } catch (error) {
       console.error(error);
       throw new Error(`Falha ao criar pedido: ${error.message}`);

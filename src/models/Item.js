@@ -1,6 +1,5 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
-const Pedido = require("./Pedido");
 
 const Item = sequelize.define("Item", {
   nome: {
@@ -17,12 +16,6 @@ const Item = sequelize.define("Item", {
     type: DataTypes.DOUBLE,
     allowNull: false,
   },
-});
-
-Item.belongsToMany(Pedido, {
-  through: "PedidoItems",
-  as: "pedidos",
-  foreignKey: "ItemId",
 });
 
 module.exports = Item;

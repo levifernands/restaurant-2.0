@@ -46,8 +46,8 @@ module.exports = {
     try {
       const itemDTO = new ItemDTO(
         req.body.nome,
-        req.body.email,
-        req.body.senha
+        req.body.descricao,
+        req.body.preco
       );
       const item = await ItemService.updateItem(itemId, itemDTO);
       return res.json(item);

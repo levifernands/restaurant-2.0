@@ -1,22 +1,14 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Analisale Documentation",
+    "title": "Documentação do projeto Tópicos Web",
     "description": "This is the documentation for the Web project API (in developmeent)",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://localhost:3000/clientes",
-      "description": "Cliente API"
-    },
-    {
-      "url": "https://localhost:3000/pedidos",
-      "description": "Pedido API"
-    },
-    {
-      "url": "https://localhost:3000/items",
-      "description": "Item API"
+      "url": "https://localhost:3000/",
+      "description": " API"
     }
   ],
   "tags": [
@@ -590,7 +582,7 @@
             "type": "integer",
             "example": 1
           },
-          "name": {
+          "nome": {
             "type": "string",
             "example": "Adryano Doe"
           },
@@ -598,7 +590,7 @@
             "type": "string",
             "example": "adryano.doe@example.com"
           },
-          "password": {
+          "pedido": {
             "type": "integer",
             "example": 2
           }
@@ -613,7 +605,7 @@
             "format": "int64",
             "example": 1
           },
-          "name": {
+          "nome": {
             "type": "string",
             "example": "Adriano Doe"
           },
@@ -621,7 +613,7 @@
             "type": "string",
             "example": "adriano.doe@example.com"
           },
-          "password": {
+          "pedido": {
             "type": "integer",
             "example": 1
           }
