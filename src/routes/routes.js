@@ -3,6 +3,14 @@ const router = express.Router();
 const itemController = require("../controller/itemController");
 const pedidoController = require("../controller/pedidoController");
 const clienteController = require("../controller/clienteController");
+const reservaMesaController = require("../controllers/ReservaMesaController");
+
+
+router.post("/reservas", reservaMesaController.criarReserva);
+router.get("/reservas", reservaMesaController.listarReservas);
+router.get("/reservas/:id", reservaMesaController.buscarReservaPorId);
+router.put("/reservas/:id", reservaMesaController.atualizarReserva);
+router.delete("/reservas/:id", reservaMesaController.excluirReserva);
 
 router.post("/items", itemController.createItem);
 router.get("/items", itemController.getAllItems);
