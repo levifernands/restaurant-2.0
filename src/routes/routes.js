@@ -3,7 +3,7 @@ const router = express.Router();
 const itemController = require("../controller/itemController");
 const pedidoController = require("../controller/pedidoController");
 const clienteController = require("../controller/clienteController");
-const reservaMesaController = require("../controllers/ReservaMesaController");
+const reservaMesaController = require("../controller/MesaReservaController");
 
 
 router.post("/reservas", reservaMesaController.criarReserva);
