@@ -1,8 +1,8 @@
 const ReservaMesaService = require("../service/MesaReservaService");
 const ReservaMesaDTO = require("../dto/MesaReservaDTO");
 
-const ReservaMesaController = {
-  criarReserva: async (req, res) => {
+module.exports = {
+  async criarReserva(req, res) {
     try {
       const reservaMesaDTO = new ReservaMesaDTO(
         req.body.numeroMesa,
@@ -15,7 +15,7 @@ const ReservaMesaController = {
     }
   },
 
-  listarReservas: async (req, res) => {
+  async listarReservas(req, res) {
     try {
       const reservas = await ReservaMesaService.listarReservas();
       return res.json(reservas);
@@ -24,9 +24,8 @@ const ReservaMesaController = {
     }
   },
 
-  buscarReservaPorId: async (req, res) => {
+  async buscarReservaPorId(req, res) {
     const reservaId = req.params.id;
-
     try {
       const reserva = await ReservaMesaService.buscarReservaPorId(reservaId);
       if (!reserva) {
@@ -38,7 +37,7 @@ const ReservaMesaController = {
     }
   },
 
-  atualizarReserva: async (req, res) => {
+  async atualizarReserva(req, res) {
     const reservaId = req.params.id;
 
     try {
@@ -46,14 +45,17 @@ const ReservaMesaController = {
         req.body.numeroMesa,
         req.body.isReservado
       );
-      const reservaMesa = await ReservaMesaService.atualizarReserva(reservaId, reservaMesaDTO);
+      const reservaMesa = await ReservaMesaService.atualizarReserva(
+        reservaId,
+        reservaMesaDTO
+      );
       return res.json(reservaMesa);
     } catch (error) {
       return res.status(500).json({ error: error.message || "Bad Request" });
     }
   },
 
-  excluirReserva: async (req, res) => {
+  async excluirReserva(req, res) {
     const reservaId = req.params.id;
 
     try {
@@ -66,5 +68,3 @@ const ReservaMesaController = {
     }
   },
 };
-
-module.exports = ReservaMesaController;

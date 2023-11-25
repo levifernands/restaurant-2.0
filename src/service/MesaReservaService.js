@@ -1,27 +1,29 @@
 const ReservaMesaRepository = require("../repository/MesaReservaRepository");
 const MesaReservaDTO = require("../dto/MesaReservaDTO");
 
-const ReservaMesaService = {
-  criarReserva: async (reservaMesaDTO) => {
-    const {numeroMesa, isReservado} = reservaMesaDTO
-    return await ReservaMesaRepository.create(new MesaReservaDTO(numeroMesa,isReservado));
-  },
+class ReservaMesaService {
+  async criarReserva(reservaMesaDTO) {
+    const { numeroMesa, isReservado } = reservaMesaDTO;
+    return await ReservaMesaRepository.create(
+      new MesaReservaDTO(numeroMesa, isReservado)
+    );
+  }
 
-  listarReservas: async () => {
+  async listarReservas() {
     return await ReservaMesaRepository.findAll();
-  },
+  }
 
-  buscarReservaPorId: async (id) => {
+  async buscarReservaPorId(id) {
     return await ReservaMesaRepository.findById(id);
-  },
+  }
 
-  atualizarReserva: async (id, reservaMesaDTO) => {
+  async atualizarReserva(id, reservaMesaDTO) {
     return await ReservaMesaRepository.update(id, reservaMesaDTO);
-  },
+  }
 
-  excluirReserva: async (id) => {
+  async excluirReserva(id) {
     return await ReservaMesaRepository.delete(id);
-  },
-};
+  }
+}
 
-module.exports = ReservaMesaService;
+module.exports = new ReservaMesaService();

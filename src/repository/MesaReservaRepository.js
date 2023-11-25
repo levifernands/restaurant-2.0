@@ -2,30 +2,30 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
 const ReservaMesa = require("../models/MesaReserva");
 
-const ReservaMesaRepository = {
-  save: async (reservaMesa) => {
-    return await ReservaMesa.create(reservaMesa);
-  },
+class ReservaMesaRepository {
+  async create(reservaMesa) {
+    return ReservaMesa.create(reservaMesa);
+  }
 
-  findAll: async () => {
-    return await ReservaMesa.findAll();
-  },
+  async findAll() {
+    return ReservaMesa.findAll();
+  }
 
-  findById: async (id) => {
-    return await ReservaMesa.findByPk(id);
-  },
+  async findById(id) {
+    return ReservaMesa.findByPk(id);
+  }
 
-  update: async (id, reservaMesa) => {
+  async update(id, reservaMesa) {
     return await ReservaMesa.update(reservaMesa, {
       where: { id: id },
     });
-  },
+  }
 
-  delete: async (id) => {
+  async delete(id) {
     return await ReservaMesa.destroy({
       where: { id: id },
     });
-  },
-};
+  }
+}
 
-module.exports = ReservaMesaRepository;
+module.exports = new ReservaMesaRepository();
